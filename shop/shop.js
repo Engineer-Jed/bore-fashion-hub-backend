@@ -1,18 +1,32 @@
 // === shop.js ===
 
-// Load or create cart array
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// === MOCK PRODUCT DATA STRUCTURE ===
-// This array will hold all your products, including the category.
-let products = JSON.parse(localStorage.getItem("products")) || [];
-
+// === Global State ===
+let allProducts = []; // This will hold all products fetched from the DB
+let cart = JSON.parse(localStorage.getItem("cart")) || []; // Cart remains in localStorage
 const productContainer = document.getElementById("productContainer");
 
-// === 1. PRODUCT RENDERING FUNCTION ===
+// === 1. FETCH ALL PRODUCTS FROM SERVER ===
+async function fetchProducts() {
+    try {
+        const response = await fetch('http://localhost:3000/api/products');
+        if (!response.ok) throw new Error('Network response was not ok.');
+        allProducts = await response.json();
+        
+        // Once products are fetched, display them
+        const category = window.currentCategory;
+        if (category) {
+            displayProducts(category);
+        }
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+        productContainer.innerHTML = `<p class="no-products-message">Could not load products. Please ensure the server is running and try again.</p>`;
+    }
+}
+
+// === 2. PRODUCT RENDERING FUNCTION ===
 function displayProducts(category, searchTerm = '') {
     // 1. Start by filtering products based on the current category
-    let categoryProducts = products.filter(product => product.category === category);
+    let categoryProducts = allProducts.filter(product => product.category === category);
 
     // 2. If there's a search term, filter again by product name
     if (searchTerm) {
@@ -21,7 +35,7 @@ function displayProducts(category, searchTerm = '') {
         );
     }
 
-    // 2. Clear the container before loading new products
+    // 3. Clear the container before loading new products
     productContainer.innerHTML = ''; 
 
     if (categoryProducts.length === 0) {
@@ -29,7 +43,7 @@ function displayProducts(category, searchTerm = '') {
         return;
     }
 
-    // 3. Create and append HTML for each product
+    // 4. Create and append HTML for each product
     categoryProducts.forEach(product => {
         const productCard = document.createElement('article');
         productCard.classList.add('product-card');
@@ -42,13 +56,13 @@ function displayProducts(category, searchTerm = '') {
         productContainer.appendChild(productCard);
     });
 
-    // 4. Attach event listeners to the new 'Add to Cart' buttons
+    // 5. Attach event listeners to the new 'Add to Cart' buttons
     document.querySelectorAll('.btn-add-to-cart').forEach(button => {
         button.addEventListener('click', handleAddToCart);
     });
 }
 
-// === 2. CART LOGIC (Reused from script.js) ===
+// === 3. CART LOGIC ===
 function updateCartCount() {
   // ✅ FIX: Reload the cart from localStorage to get the most up-to-date data.
   const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -62,7 +76,7 @@ function updateCartCount() {
 
 function handleAddToCart(e) {
     const productId = parseInt(e.target.dataset.productId);
-    const product = products.find(p => p.id === productId);
+    const product = allProducts.find(p => p.id === productId);
 
     if (!product) return;
 
@@ -80,7 +94,7 @@ function handleAddToCart(e) {
 }
 
 
-// === 3. TOAST MESSAGE (Reused from script.js) ===
+// === 4. TOAST MESSAGE ===
 function showToast(message) {
   let toast = document.getElementById("toast");
   if (!toast) return;
@@ -91,21 +105,13 @@ function showToast(message) {
 
 // === INITIALIZATION ===
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Get the category defined in the HTML file's <script> tag
-    const category = window.currentCategory;
-
-    // 2. Load the products for that category
-    if (category) {
-        displayProducts(category);
-    } else {
-        productContainer.innerHTML = `<p>Error: Could not determine category for this page.</p>`;
-    }
+    // 1. Fetch products from the server. Displaying them is handled inside fetchProducts().
+    fetchProducts();
     
-    // 3. Update cart count
-    cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // 2. Update cart count on page load
     updateCartCount();
 
-    // 4. Add event listener for the search bar
+    // 3. Add event listener for the search bar
     const searchInput = document.getElementById('productSearchInput');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {

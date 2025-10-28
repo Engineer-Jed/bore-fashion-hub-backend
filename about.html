@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Bore-Fashion</title>
+    <link rel="stylesheet" href="../home/style.css" />
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: left;
+        }
+        .about-container .section-title {
+            text-align: center;
+        }
+        .about-section {
+            margin-bottom: 2.5rem;
+        }
+        .about-section h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .about-section p {
+            line-height: 1.8;
+            color: #555;
+        }
+        .values-list {
+            list-style: none;
+            padding: 0;
+        }
+        .values-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .values-list strong {
+            color: var(--primary-color);
+        }
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 4rem 1rem;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 3rem;
+        }
+        .about-hero h2 {
+            color: var(--white);
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HOUSE OF BORE FASHION HUB</h1>
+        <nav>
+            <a href="../home/index.html">Home</a>
+            <a href="../home/index.html#category-preview">Shop</a>
+            <a href="../about/about.html">About Us</a>
+            <a href="../Admin/admin.html">Admin</a>
+            <a href="../cart/cart.html">Cart 🛒(<span id="cart-count">0</span>)</a>
+        </nav>
+        <div id="welcomeMessage" class="welcome-message"></div>
+        <button id="logoutBtn" class="btn-logout hidden">Logout</button>
+    </header>
+
+    <main>
+        <div class="about-hero">
+            <h2>Our Story: Weaving Kenyan Style</h2>
+        </div>
+
+        <div class="about-container">
+            <div class="about-section">
+                <h3>Welcome to the House of Bore</h3>
+                <p>
+                    Born from a passion for vibrant local culture and contemporary style, House of Bore Fashion Hub is more than just an online store—it's a celebration of Kenyan creativity. Founded in Bungoma, Kenya, our mission is to bring you trendy, affordable, and comfortable fashion that tells a story. We believe that style should be accessible to everyone, without compromising on quality or authenticity.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Our Mission</h3>
+                <p>
+                    Our goal is to be your go-to destination for modern Kenyan fashion. We carefully curate our collections—from menswear and womenswear to shoes and bags—to ensure each piece reflects the dynamic spirit of our culture while fitting seamlessly into your everyday life. We are committed to empowering local style and making you feel confident and comfortable in what you wear.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Our Values</h3>
+                <ul class="values-list">
+                    <li><strong>Authenticity:</strong> We celebrate genuine Kenyan design and craftsmanship.</li>
+                    <li><strong>Quality:</strong> We select high-quality materials to create pieces that last.</li>
+                    <li><strong>Affordability:</strong> We believe great style shouldn't break the bank.</li>
+                    <li><strong>Customer Joy:</strong> Your happiness is our top priority. We're dedicated to providing an exceptional shopping experience.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../home/index.html">Home</a></li>
+                    <li><a href="../home/index.html#category-preview">Shop</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                    <li><a href="../contact/contact.html">Contact</a></li>
+                    <li><a href="../legal/terms.html">Terms</a></li>
+                    <li><a href="../help/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><img src="../home/icons/instagram.svg" alt="Instagram"></a>
+                    <a href="#" aria-label="TikTok"><img src="../home/icons/tiktok.svg" alt="TikTok"></a>
+                    <a href="https://wa.me/254714663058" aria-label="WhatsApp"><img src="../home/icons/whatsapp.svg" alt="WhatsApp"></a>
+                    <a href="#" aria-label="Facebook"><img src="../home/icons/facebook.svg" alt="Facebook"></a>
+                    <a href="#" aria-label="YouTube"><img src="../home/icons/youtube.svg" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column contact">
+                <h3>Get In Touch</h3>
+                <p>Email: <a href="mailto:info@borefashion.com">info@borefashion.com</a></p>
+                <p>WhatsApp: <a href="tel:+254714663058">+254714663058</a></p>
+                <p>Location: Bungoma, Kenya</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 FashionHub. All rights reserved.</p>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+    <script src="../shop/shop.js"></script>
+</body>
+</html>

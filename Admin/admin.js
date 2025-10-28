@@ -4,9 +4,6 @@
 // Change this to your preferred secure password
 const ADMIN_PASSWORD = "1234";
 
-// === Load or initialize products ===
-let products = JSON.parse(localStorage.getItem("products")) || [];
-
 // === DOM ELEMENTS ===
 const loginForm = document.getElementById("loginForm");
 const loginSection = document.getElementById("loginSection");
@@ -15,6 +12,9 @@ const loginMessage = document.getElementById("loginMessage");
 const toast = document.getElementById("toast");
 const addForm = document.getElementById("addProductForm");
 const productCategorySelect = document.getElementById("productCategory"); // New: Get category select element
+
+// === State ===
+let products = []; // This will be populated from the database
 
 // === Toast Notification ===
 function showToast(message) {
@@ -25,9 +25,18 @@ function showToast(message) {
 }
 
 // === Render Products Table ===
-function renderProducts() {
+async function renderProducts() {
   const tbody = document.getElementById("productTableBody");
   if (!tbody) return;
+
+  try {
+    const response = await fetch('http://localhost:3000/api/products');
+    products = await response.json(); // Update the global products array
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    tbody.innerHTML = `<tr><td colspan="6">Error loading products. Is the server running?</td></tr>`;
+    return;
+  }
 
   tbody.innerHTML = "";
 
@@ -36,25 +45,23 @@ function renderProducts() {
     return;
   }
 
-  products.forEach((p, index) => {
+  products.forEach((p) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${index + 1}</td>
+      <td>${p.id}</td>
       <td><img src="${p.image}" alt="${p.name}" width="50" height="60"></td>
       <td>${p.name}</td>
       <td>${p.category ? p.category.charAt(0).toUpperCase() + p.category.slice(1) : 'N/A'}</td>
       <td>Kes ${p.price}</td>
-      <td><button class="delete-btn" onclick="deleteProduct(${index})">Delete</button></td>
+      <td><button class="delete-btn" onclick="deleteProduct(${p.id}, '${p.name}')">Delete</button></td>
     `;
     tbody.appendChild(row);
   });
-
-  localStorage.setItem("products", JSON.stringify(products));
 }
 
 // === Add New Product ===
 if (addForm) {
-  addForm.addEventListener("submit", (e) => {
+  addForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("productName").value.trim();
@@ -68,38 +75,42 @@ if (addForm) {
       return;
     }
     
-    // ✅ CORRECTED LOGIC: Only use FileReader for file upload
     const reader = new FileReader();
-    
-    // This function runs once the file is fully loaded
-    reader.onload = function(event) {
-        const imageDataURL = event.target.result;
-
-        // Create a new product object with a unique ID using a timestamp
-        const newProduct = { id: Date.now(), name, price, category, image: imageDataURL };
-
-        // Store the product with the Data URL
-        products.push(newProduct);
-        localStorage.setItem("products", JSON.stringify(products));
-        
-        // Render and reset after successful storage
-        renderProducts();
-        addForm.reset();
-        showToast(`${name} added successfully!`);
-    };
-
-    // Read the file as a Data URL (base64 encoded string)
     reader.readAsDataURL(file);
+    reader.onload = async function(event) {
+      const imageDataURL = event.target.result;
+      const newProduct = { name, price, category, image: imageDataURL };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newProduct),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to add product.');
+        }
+
+        await renderProducts(); // Re-fetch and render all products
+        addForm.reset();
+        showToast(`✅ ${name} added successfully!`);
+      } catch (error) {
+        console.error('Add Product Error:', error);
+        showToast(`❌ Error: ${error.message}`);
+      }
+    };
   });
 }
 
 // === Delete Product ===
-function deleteProduct(index) {
-  const product = products[index];
-  products.splice(index, 1);
-  localStorage.setItem("products", JSON.stringify(products));
-  renderProducts();
-  showToast(`🗑️ ${product.name} removed`);
+async function deleteProduct(id, name) {
+  if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+
+  await fetch(`http://localhost:3000/api/products/${id}`, { method: 'DELETE' });
+  showToast(`🗑️ ${name} removed`);
+  await renderProducts(); // Re-fetch and render
 }
 
 // === LOGIN FUNCTIONALITY ===
