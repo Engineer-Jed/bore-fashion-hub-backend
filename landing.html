@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FashionHub | Your Style, Your Way</title>
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <h1 class="logo">House Of Bore Fashion HUB-WEBSITE</h1>  
+      <div class="nav-buttons">
+        <button id="showSignIn" class="btn">Sign In</button>
+        <button id="showSignUp" class="btn-outline">Sign Up</button>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h2>Discover the Latest Trends in Fashion</h2>
+      <p>Shop your favorite outfits from top designers and streetwear brands all in one place.</p>
+      <a href="#" id="shopNowBtn" class="cta-btn">Shop Now</a>
+    </div>
+  </header>
+
+  <!-- === AUTH SECTION === -->
+  <section class="auth-section" id="authSection">
+    <div class="auth-container">
+      <!-- SIGN IN -->
+      <form id="signInForm" class="auth-form">
+        <h3>Welcome Back</h3>
+        <input type="email" id="signinEmail" placeholder="Email" required />
+        <input type="password" id="signinPassword" placeholder="Password" required />
+        <button type="submit" class="btn">Sign In</button>
+        <p>Don't have an account? <span id="switchToSignUp">Sign Up</span></p>
+      </form>
+
+      <!-- SIGN UP -->
+      <form id="signUpForm" class="auth-form hidden">
+        <h3>Create Account</h3>
+        <input type="text" id="signupName" placeholder="Full Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button type="submit" class="btn">Sign Up</button>
+        <p>Already have an account? <span id="switchToSignIn">Sign In</span></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- === FEATURED PRODUCTS === -->
+  <section class="featured">
+    <h2>✨ Featured Products</h2>
+    <div class="product-grid" id="featuredProducts"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 FashionHub | All Rights Reserved</p>
+  </footer>
+
+  <!-- ✅ Load JS after everything -->
+  <script src="landing.js"></script>
+</body>
+</html>

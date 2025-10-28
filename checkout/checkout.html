@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Checkout | FashionHub</title>
+ <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+ <header>
+  <h1>FashionHub</h1>
+  <nav>
+   <a href="/home/index.html">Home</a>
+   <a href="/cart/cart.html">🛒 Cart</a>
+  </nav>
+ </header>
+
+ <main class="checkout-container">
+  <h2>Checkout</h2>
+
+    <section class="order-summary">
+   <h3>Your Order</h3>
+   <ul id="order-items"></ul>
+   <p><strong>Total: KES <span id="order-total">0.00</span></strong></p>   </section>
+
+    <section class="payment-form">
+   <h3>M-Pesa Payment Details</h3>    <form id="checkout-form">
+    <label>Full Name</label>
+    <input type="text" id="name" required />
+
+    <label>Delivery Address</label>
+    <input type="text" id="address" required />
+
+    <label>M-Pesa Phone Number</label>     <input type="tel" id="mpesa-number" pattern="[0-9]{10}" placeholder="e.g., 0712345678" required />         <button type="submit">Complete Order</button>    </form>
+  </section>
+ </main>
+
+ <footer>
+  <p>&copy; 2025 FashionHub. All rights reserved.</p>
+ </footer>
+
+ <div id="toast" class="toast"></div>
+
+ <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* === admin.css === */
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9fb;
+  color: #333;
+}
+
+header {
+  background: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header img {
+  width: 40px;
+  height: 40px;
+}
+
+.login-section {
+    display: block;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.login-section h2 {
+  margin-bottom: 20px;
+}
+
+.login-section form {
+  display: inline-block;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.login-section input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #444;
+}
+
+.hidden {
+  display: none  !important;
+}
+
+.admin-panel {
+    display: block;
+  padding: 20px;
+}
+
+.add-product, .product-list {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f4f4f4;
+}
+
+.delete-btn {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+
+.logout-btn {
+  float: right;
+  margin-bottom: 15px;
+  background: #444;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #222;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.toast.show {
+  opacity: 1;
+}

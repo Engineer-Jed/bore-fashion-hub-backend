@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Bore-Fashion</title>
+ <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ 
+ <header>
+  <h1>HOUSE OF BORE FASHION HUB</h1>
+  <nav>
+   <a href="index.html">Home</a>
+      <a href="#category-preview">Shop</a> 
+      <a href="about.html">About</a>   
+       <a href="/Admin/admin.html">Admin</a>
+    <a href="../cart/cart.html">Cart 🛒(<span id="cart-count">0</span>)</a>
+  </nav>
+  <div id="welcomeMessage" class="welcome-message"></div>
+  <button id="logoutBtn" class="btn-logout hidden">Logout</button>
+ </header>
+
+ <section class="hero">
+  <h2>Trendy. Affordable. Comfortable.</h2>
+  <h2> Kenyan Fashion</h2>
+ </section>
+
+  <section id="category-preview" class="category-preview">
+    <h2>Shop By Category</h2>
+    <div class="category-grid">
+      <a href="../shop/men.html" class="category-card men">
+        <h3>Men</h3>
+        <p>Explore all menswear</p>
+      </a>
+      <a href="../shop/women.html" class="category-card women">
+        <h3>Women</h3>
+        <p>View the latest trends</p>
+      </a>
+      <a href="../shop/shoes.html" class="category-card shoes">
+        <h3>Shoes</h3>
+        <p>Step up your style</p>
+      </a>
+      <a href="../shop/bags.html" class="category-card bags">
+        <h3>Bags</h3>
+        <p>Find your perfect accessory</p>
+      </a>
+    </div>
+  </section>
+
+   <footer>
+    <div class="footer-content">
+      <div class="footer-column links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#category-preview">Shop</a></li>
+         
+          <li><a href="about.html">About</a></li>
+<!--           <li><a href="../contact/contact.html">Contact</a></li>
+ -->          <li><a href="../legal/terms.html">Terms</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><img src="/images/square-instagram-brands-solid-full.svg" alt="Instagram"></a>
+          <a href="#" aria-label="TikTok"><img src="/images/tiktok-brands-solid-full.svg" alt="TikTok"></a>
+          <a href="https://wa.me/254714663058" aria-label="WhatsApp"><img src="/images/whatsapp-brands-solid-full.svg" alt="WhatsApp"></a>
+          <a href="#" aria-label="Facebook"><img src="/images/facebook-brands-solid-full.svg" alt="Facebook"></a>
+          <a href="#" aria-label="YouTube"><img src="/images/youtube-brands-solid-full.svg" alt="YouTube"></a>
+          
+        </div>
+      </div>
+
+      <div  class="footer-column contact">
+        <h3>Get In Touch</h3>
+        <p id="footer-column contact">Email: <a href="mailto:info@borefashion.com">info@borefashion.com</a></p>
+        <p>WhatsApp: <a href="tel:+254714663058">+254714663058</a></p>
+        <p>Location: Bungoma, Kenya</p>
+      </div>
+    </div>
+    
+  <p class="copyright">&copy; 2025 FashionHub. All rights reserved.</p>
+ </footer>
+   <div id="toast" class="toast"></div>
+ <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* ===== checkout.css ===== */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fdfdfd;
+  margin: 0;
+  color: #222;
+}
+
+header {
+  background-color: #111;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+nav a:hover {
+  color: #ff6f61;
+}
+
+.checkout-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+  text-align: center;
+  color: #333;
+}
+
+.order-summary {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+#order-items {
+  list-style: none;
+  padding: 0;
+}
+
+#order-items li {
+  background: #f7f7f7;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.payment-form label {
+  display: block;
+  margin: 10px 0 4px;
+  font-weight: 500;
+}
+
+.payment-form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.payment-form button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.payment-form button:hover {
+  background-color: #e65b50;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 180px;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 14px;
+  transition: visibility 0s, opacity 0.3s linear;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  background: #111;
+  color: white;
+  padding: 10px;
+  margin-top: 30px;
+}
